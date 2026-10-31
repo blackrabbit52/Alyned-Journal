@@ -5,8 +5,6 @@ export default function LoginScreen({ onPreview }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  
-    
 
   return (
     <View style={styles.card}>

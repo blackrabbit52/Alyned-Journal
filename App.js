@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Animated, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 
 import LoginScreen from './LoginScreen';
@@ -32,55 +32,52 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-    <View style={StyleSheet.absoluteFill} pointerEvents="none">
-      <Animated.Text
-        style={[styles.star, { top: '12%', left: '15%', transform: [{ translateY: float }] }]}
-      >
-        ✦
-      </Animated.Text>
+      <View style={StyleSheet.absoluteFill} pointerEvents="none">
+        <Animated.Text
+          style={[styles.star, { top: '12%', left: '15%', transform: [{ translateY: float }] }]}
+        >
+          ✦
+        </Animated.Text>
 
-      <Animated.Text
-        style={[styles.star, { top: '25%', right: '12%', transform: [{ translateY: float }] }]}
-      >
-        ✧
-      </Animated.Text>
+        <Animated.Text
+          style={[styles.star, { top: '25%', right: '12%', transform: [{ translateY: float }] }]}
+        >
+          ✧
+        </Animated.Text>
 
-      <Animated.Text
-        style={[styles.star, { bottom: '18%', left: '20%', transform: [{ translateY: float }] }]}
-      >
-        ✦
-      </Animated.Text>
-    </View>
+        <Animated.Text
+          style={[styles.star, { bottom: '18%', left: '20%', transform: [{ translateY: float }] }]}
+        >
+          ✦
+        </Animated.Text>
+      </View>
       <Text style={styles.title}>Alyned Journal</Text>
       <Text style={styles.subtitle}>A little space just for you</Text>
 
       {showJournal ? (
-      <TextInput
-        style={styles.editor}
-        placeholder="What's on your mind today?"
-        multiline
-        value={text}
-        onChangeText={setText}
-      />
-    ) : (
-      <LoginScreen onPreview={() => setShowJournal(true)} />
-    )}
-      <StatusBar style="auto" />
-      
-      <TextInput
-        style={styles.editor}
-        placeholder="What's on your mind today?"
-        multiline
-        value={text}
-        onChangeText={setText}
-      />
+        <>
+          <TextInput
+            style={styles.editor}
+            placeholder="What's on your mind today?"
+            multiline
+            value={text}
+            onChangeText={setText}
+          />
+
+          <Pressable onPress={() => setShowJournal(false)}>
+            <Text style={styles.backLink}>Back to sign-in preview</Text>
+          </Pressable>
+        </>
+      ) : (
+        <LoginScreen onPreview={() => setShowJournal(true)} />
+      )}
       <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    title: {
+  title: {
     fontFamily: 'Georgia',
     fontSize: 32,
     color: '#752F4A',
@@ -97,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-   editor: {
+  editor: {
     width: '85%',
     minHeight: 160,
     marginTop: 24,
@@ -106,9 +103,14 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     textAlignVertical: 'top',
   },
-    star: {
+  star: {
     position: 'absolute',
     fontSize: 20,
     color: '#C97A98',
+  },
+  backLink: {
+    marginTop: 16,
+    color: '#752F4A',
+    fontSize: 15,
   },
 });
