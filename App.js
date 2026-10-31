@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Animated, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 
+import LoginScreen from './LoginScreen';
+
 export default function App() {
   const [text, setText] = useState('')
 
@@ -50,6 +52,7 @@ export default function App() {
     </View>
       <Text style={styles.title}>Alyned Journal</Text>
       <Text style={styles.subtitle}>A little space just for you</Text>
+      <LoginScreen />
       <TextInput
         style={styles.editor}
         placeholder="What's on your mind today?"
