@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function LoginScreen() {
+export default function LoginScreen({ onPreview }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  
+    
 
   return (
     <View style={styles.card}>
@@ -24,6 +27,11 @@ export default function LoginScreen() {
         value={password}
         onChangeText={setPassword}
       />
+
+      <Pressable style={styles.button} onPress={onPreview}>
+        <Text style={styles.buttonText}>Preview journal</Text>
+    </Pressable>
+
     </View>
   );
 }
@@ -43,5 +51,15 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     padding: 14,
     marginBottom: 10,
+  },
+    button: {
+    backgroundColor: '#A84F72',
+    padding: 14,
+    borderRadius: 14,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
 });

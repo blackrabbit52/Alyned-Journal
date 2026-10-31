@@ -6,6 +6,7 @@ import LoginScreen from './LoginScreen';
 
 export default function App() {
   const [text, setText] = useState('')
+  const [showJournal, setShowJournal] = useState(false);
 
   const float = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -52,7 +53,20 @@ export default function App() {
     </View>
       <Text style={styles.title}>Alyned Journal</Text>
       <Text style={styles.subtitle}>A little space just for you</Text>
-      <LoginScreen />
+
+      {showJournal ? (
+      <TextInput
+        style={styles.editor}
+        placeholder="What's on your mind today?"
+        multiline
+        value={text}
+        onChangeText={setText}
+      />
+    ) : (
+      <LoginScreen onPreview={() => setShowJournal(true)} />
+    )}
+      <StatusBar style="auto" />
+      
       <TextInput
         style={styles.editor}
         placeholder="What's on your mind today?"
