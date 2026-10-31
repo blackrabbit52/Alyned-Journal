@@ -12,8 +12,8 @@ export default function App() {
         style={styles.editor}
         placeholder="What's on your mind today?"
         multiline
-        value={entry}
-        onChangeText={setEntry}
+        value={text}
+        onChangeText={setText}
       />
       <StatusBar style="auto" />
     </View>
